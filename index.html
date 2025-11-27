@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>iGenkids - Digital Books & Activities for Kids</title>
+
+  <!-- Firebase (unchanged) -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+  <link rel="stylesheet" href="style.css"/>
+
+  <style>
+    /* PAGE WIDTH CONTROL */
+    main {
+      max-width: 1150px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    /* Fix marquee at top */
+    .offer-marquee {
+      position: sticky;
+      top: 0;
+      z-index: 9999;
+    }
+
+    section {
+      margin-bottom: 60px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ================= OFFER MARQUEE ================= -->
+<div class="offer-marquee">
+  <marquee behavior="scroll" direction="left" scrollamount="5">
+    🎉 <strong>LIMITED TIME OFFER:</strong>
+    Get <span class="offer-highlight">40% OFF</span> on All iGenkids Activity Books –
+    Use Code: <strong>IGEN40</strong> | 📚 FREE Bonus Worksheets Included
+  </marquee>
+</div>
+
+<header>
+  <div class="logo">
+    <span class="logo-text">iGenkids</span>
+  </div>
+  <nav>
+    <a href="#hero">Home</a>
+    <a href="#products">Products</a>
+    <a href="#ages">Age Groups</a>
+    <a href="#faq">FAQ</a>
+    <a href="checkout.html" style="font-weight:bold;color:#2563eb;">Checkout</a>
+    <a href="dashboard.html" style="font-weight:bold;color:#16a34a;">Dashboard</a>
+  </nav>
+</header>
+
+<main>
+
+<!-- ================= OFFER SECTION ================= -->
+<section class="offer-screen">
+
+  <h2 style="text-align:center;">🟢 Limited Time Scholarship Offer</h2>
+  <p style="text-align:center;max-width:600px;margin:10px auto;">
+    Give your child access to premium learning content at a discounted price.
+  </p>
+
+  <div class="offer-box">
+
+    <div class="offer-left">
+      <ul>
+        <li>✔ Teacher-designed content</li>
+        <li>✔ Printable & Digital books</li>
+        <li>✔ Lifetime access</li>
+        <li>✔ Instant download</li>
+      </ul>
+
+      <button onclick="location.href='#products'">
+        Claim 40% Discount
+      </button>
+    </div>
+
+    <div class="offer-right">
+      <h3>Use Code</h3>
+      <div class="offer-code">IGEN40</div>
+      <p>Apply this at checkout</p>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ================= HERO ================= -->
+<section id="hero" class="hero hero-classic">
+
+  <div class="hero-content">
+
+    <h1>
+      Fun & Smart Digital Activity Books<br>
+      <span>For Kids (Ages 4 – 12)</span>
+    </h1>
+
+    <p>
+      Developed by educators to improve reading, writing and problem-solving
+      skills in a fun & engaging way.
+    </p>
+
+    <div class="hero-actions">
+      <button onclick="location.href='#products'">Browse Books</button>
+      <button onclick="location.href='#faq'" class="secondary">See FAQ</button>
+    </div>
+
+  </div>
+
+  <div class="hero-image">
+    <img src="https://cdn-icons-png.flaticon.com/512/7984/7984941.png" alt="Kids learning">
+  </div>
+
+</section>
+
+<!-- ================= PRODUCTS (UNTOUCHED - FROM FIREBASE) ================= -->
+<section id="products">
+  <h2 style="text-align:center;">Popular Activity Books</h2>
+  <p class="section-subtitle" style="text-align:center;">
+    Add your favourite books to the cart and place order.
+  </p>
+
+  <div class="product-grid" id="products-container"></div>
+
+  <div style="text-align:center; margin-top:20px;">
+    <button onclick="location.href='checkout.html'">
+      Proceed to Checkout
+    </button>
+  </div>
+</section>
+
+<!-- ================= CART ================= -->
+<section class="cart-preview">
+  <h2>Your Cart</h2>
+  <div id="cart-items"></div>
+  <p id="cart-total">Total: Rs. 0</p>
+
+  <button onclick="location.href='checkout.html'">
+    Checkout Now
+  </button>
+</section>
+
+<!-- ================= AGE GROUPS ================= -->
+<section id="ages">
+  <h2>Perfect for Every Age Group</h2>
+
+  <div class="ages-grid">
+    <div class="age-card">
+      <h3>3 – 5 Years</h3>
+      <p>Alphabet, Shapes, Coloring</p>
+    </div>
+
+    <div class="age-card">
+      <h3>6 – 9 Years</h3>
+      <p>Reading, Math, Puzzles</p>
+    </div>
+
+    <div class="age-card">
+      <h3>10 – 12 Years</h3>
+      <p>Advanced Practice & Thinking</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section id="faq" class="faq-section">
+
+  <h2 style="text-align:center;">Frequently Asked Questions</h2>
+
+  <details>
+    <summary>How will I receive my books?</summary>
+    <p>After payment, your books will be instantly accessible and downloadable.</p>
+  </details>
+
+  <details>
+    <summary>Can I use the books more than once?</summary>
+    <p>Yes! You get lifetime access and can print them anytime.</p>
+  </details>
+
+  <details>
+    <summary>Is there any monthly subscription?</summary>
+    <p>No, this is a one-time purchase only.</p>
+  </details>
+
+  <details>
+    <summary>Can I open these on mobile?</summary>
+    <p>Yes, books work on mobile, tablet and desktop.</p>
+  </details>
+
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="landing-footer">
+
+  <div class="footer-container">
+
+    <div class="footer-column">
+      <h3>iGenkids</h3>
+      <p>
+        Digital learning platform offering fun, interactive
+        and educational activity books for kids.
+      </p>
+    </div>
+
+    <div class="footer-column">
+      <h3>Quick Links</h3>
+      <a href="#hero">Home</a>
+      <a href="#products">Products</a>
+      <a href="#faq">FAQ</a>
+      <a href="checkout.html">Checkout</a>
+      <a href="dashboard.html">Dashboard</a>
+    </div>
+
+    <div class="footer-column">
+      <h3>Contact</h3>
+      <p>📧 support@igenkids.com</p>
+      <p>📞 +91 XXXXXXXXXX</p>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    © 2025 | iGenkids | All Rights Reserved
+  </div>
+
+</footer>
+
+<!-- ================= WHATSAPP CHAT HELP ================= -->
+<a
+  href="https://wa.me/917358534315?text=Hello%20iGenkids,%20I%20need%20help%20with%20books"
+  class="whatsapp-chat"
+  target="_blank">
+  <img src="https://cdn-icons-png.flaticon.com/512/3670/3670051.png">
+</a>
+
+<script src="script.js"></script>
+
+</body>
+</html>
